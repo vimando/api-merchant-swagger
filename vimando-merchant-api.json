@@ -1,0 +1,765 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Merchant API"
+  },
+  "host": "https://shop.vimando.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "merchant",
+      "description": "Merchant Api"
+    }
+  ],
+  "paths": {
+    "/api/merchant/orders": {
+      "get": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "listOrderImports",
+        "operationId": "listOrderImports",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Results page you want to retrieve (1..N)",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of records per page.",
+            "required": false,
+            "type": "ref"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OrderImportList"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          },
+          {
+            "MERCHANT-KEY": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "importOrder",
+        "operationId": "importOrder",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "order",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OrderImport"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          },
+          {
+            "MERCHANT-KEY": []
+          }
+        ]
+      }
+    },
+    "/api/merchant/orders/{id}": {
+      "get": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "getOrderImport",
+        "operationId": "getOrderImport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OrderImport"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          },
+          {
+            "MERCHANT-KEY": []
+          }
+        ]
+      }
+    },
+    "/api/merchant/orders/{id}/state": {
+      "get": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "getOrderState",
+        "operationId": "getOrderState",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OrderState"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          },
+          {
+            "MERCHANT-KEY": []
+          }
+        ]
+      }
+    },
+    "/api/merchant/upload": {
+      "post": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "upload",
+        "operationId": "upload",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UploadedFile"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          },
+          {
+            "MERCHANT-KEY": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    },
+    "MERCHANT-KEY": {
+      "type": "apiKey",
+      "name": "MERCHANT-KEY",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "positions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Position"
+          }
+        }
+      }
+    },
+    "OrderImportList": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orderImports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderImport"
+          }
+        }
+      }
+    },
+    "OrderDelivery": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderStateHistory"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateCode": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "trackingCode": {
+          "type": "string"
+        },
+        "trackingUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Cut": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "enum": [
+            "BE",
+            "BG",
+            "DE",
+            "DK",
+            "EE",
+            "FI",
+            "FR",
+            "GR",
+            "IE",
+            "HR",
+            "LV",
+            "LT",
+            "LU",
+            "NL",
+            "PL",
+            "PT",
+            "RO",
+            "SE",
+            "CH",
+            "SK",
+            "SI",
+            "ES",
+            "CZ",
+            "HU",
+            "GB",
+            "AT"
+          ]
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2"
+          ]
+        },
+        "street": {
+          "type": "string"
+        },
+        "streetAdditional": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "Position": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Parameter"
+          }
+        },
+        "sku": {
+          "type": "string"
+        }
+      }
+    },
+    "InputText": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "FormatDimension": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number",
+          "format": "double"
+        },
+        "type": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "exception": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trace": {
+          "type": "string"
+        }
+      }
+    },
+    "UploadedFile": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "fileUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "session": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "OrderImport": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "info": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateCode": {
+          "type": "string"
+        }
+      }
+    },
+    "FormatRepeat": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number",
+          "format": "double"
+        },
+        "repeat": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "ImageVimando": {
+      "type": "object",
+      "properties": {
+        "cut": {
+          "$ref": "#/definitions/Cut"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sepia",
+              "grayscale",
+              "fliph"
+            ]
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Parameter": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "ImageUpload": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderState": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "delivery": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderDelivery"
+          }
+        },
+        "done": {
+          "type": "string"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderStateHistory"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "orderNumber": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateCode": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderStateHistory": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
